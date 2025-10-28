@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Ad #{{ ad.id }}</h2>
+<form method="post" action="/ads/{{ ad.id }}">
+  <label>Title</label>
+  <input name="title" value="{{ ad.title }}" required>
+  <label>Price</label>
+  <input name="price" type="number" step="0.01" value="{{ ad.price }}" required>
+  <label>Min Amount</label>
+  <input name="min_amount" type="number" step="0.01" value="{{ ad.min_amount }}">
+  <label>Max Amount</label>
+  <input name="max_amount" type="number" step="0.01" value="{{ ad.max_amount }}">
+  <button class="btn" type="submit">Save</button>
+</form>
+{% endblock %}

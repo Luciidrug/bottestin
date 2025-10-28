@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P2P Merchant Control</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>P2P Merchant Control</h1>
+    <nav>
+      <a href="/">Ads</a>
+      <span class="status">Mode: {{ provider_mode }} | Keys: {{ 'OK' if keys_ok else 'MISSING' }}</span>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
