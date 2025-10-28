@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>New Ad</h2>
+<form method="post" action="/new">
+  <label>Title</label>
+  <input name="title" required>
+  <label>Trade Type</label>
+  <select name="trade_type">
+    <option>BUY</option>
+    <option>SELL</option>
+  </select>
+  <label>Price</label>
+  <input name="price" type="number" step="0.01" required>
+  <label>Min Amount</label>
+  <input name="min_amount" type="number" step="0.01">
+  <label>Max Amount</label>
+  <input name="max_amount" type="number" step="0.01">
+  <label>Fiat</label>
+  <input name="fiat" value="BRL">
+  <label>Asset</label>
+  <input name="asset" value="USDT">
+  <label>External ID (Binance advNo)</label>
+  <input name="external_id">
+  <button class="btn" type="submit">Create</button>
+</form>
+{% endblock %}

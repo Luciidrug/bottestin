@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="actions">
+  <a class="btn" href="/new">New Ad</a>
+  <form method="post" action="/bulk/update" style="display:inline-block">
+    <label>Multiplier</label>
+    <input name="multiplier" type="number" step="0.01" value="1.00" required>
+    <button class="btn" type="submit">Bulk Update Prices</button>
+  </form>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ext</th>
+      <th>Title</th>
+      <th>Side</th>
+      <th>Price</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Fiat</th>
+      <th>Asset</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ad in ads %}
+    <tr>
+      <td>{{ ad.id }}</td>
+      <td>{{ ad.external_id or '-' }}</td>
+      <td>{{ ad.title }}</td>
+      <td>{{ ad.trade_type }}</td>
+      <td>{{ '%.2f'|format(ad.price) }}</td>
+      <td>{{ ad.min_amount or '-' }}</td>
+      <td>{{ ad.max_amount or '-' }}</td>
+      <td>{{ ad.fiat }}</td>
+      <td>{{ ad.asset }}</td>
+      <td>{{ ad.status }}</td>
+      <td>
+        <a class="btn" href="/ads/{{ ad.id }}">Edit</a>
+        <form method="post" action="/ads/{{ ad.id }}/toggle" style="display:inline-block">
+          <button class="btn" type="submit">{{ 'Pause' if ad.status=='active' else 'Resume' }}</button>
+        </form>
+        <form method="post" action="/ads/{{ ad.id }}/push" style="display:inline-block">
+          <button class="btn" type="submit">Push</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
